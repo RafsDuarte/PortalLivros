@@ -1,0 +1,24 @@
+C:\Vs Projects\PortalLivros\PortalLivros.Control\bin\Debug\PortalLivros.Control.dll
+C:\Vs Projects\PortalLivros\PortalLivros.Control\bin\Debug\PortalLivros.Control.pdb
+C:\Vs Projects\PortalLivros\PortalLivros.Control\bin\Debug\PortalLivros.Model.dll
+C:\Vs Projects\PortalLivros\PortalLivros.Control\bin\Debug\EntityFramework.dll
+C:\Vs Projects\PortalLivros\PortalLivros.Control\bin\Debug\PortalLivros.Model.pdb
+C:\Vs Projects\PortalLivros\PortalLivros.Control\bin\Debug\PortalLivros.Model.dll.config
+C:\Vs Projects\PortalLivros\PortalLivros.Control\bin\Debug\EntityFramework.xml
+C:\Vs Projects\PortalLivros\PortalLivros.Control\obj\Debug\PortalLivros.Control.csprojAssemblyReference.cache
+C:\Vs Projects\PortalLivros\PortalLivros.Control\obj\Debug\PortalLivros.Control.csproj.CoreCompileInputs.cache
+C:\Vs Projects\PortalLivros\PortalLivros.Control\obj\Debug\PortalLivros.Control.csproj.CopyComplete
+C:\Vs Projects\PortalLivros\PortalLivros.Control\obj\Debug\PortalLivros.Control.dll
+C:\Vs Projects\PortalLivros\PortalLivros.Control\obj\Debug\PortalLivros.Control.pdb
+C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Control\bin\Debug\PortalLivros.Control.dll
+C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Control\bin\Debug\PortalLivros.Control.pdb
+C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Control\bin\Debug\PortalLivros.Model.dll
+C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Control\bin\Debug\EntityFramework.dll
+C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Control\bin\Debug\PortalLivros.Model.pdb
+C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Control\bin\Debug\PortalLivros.Model.dll.config
+C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Control\bin\Debug\EntityFramework.xml
+C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Control\obj\Debug\PortalLivros.Control.csprojAssemblyReference.cache
+C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Control\obj\Debug\PortalLivros.Control.csproj.CoreCompileInputs.cache
+C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Control\obj\Debug\PortalLivros.Control.csproj.CopyComplete
+C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Control\obj\Debug\PortalLivros.Control.dll
+C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Control\obj\Debug\PortalLivros.Control.pdb

@@ -1,0 +1,234 @@
+﻿@model IEnumerable<PortalLivros.Model.vw_LIVRO>
+
+
+@{
+    ViewBag.Title = "MuralLivros";
+}
+
+<h2 class="text-center" style="padding-top:50px">Estante</h2>
+
+<p>
+    @Html.ActionLink("Criar Novo Livro", "CriarLivro", "MuralLivros")
+</p>
+
+
+@using (Html.BeginForm("CapturarAmigo", "Home", FormMethod.Get, new { id = "cadastrar-form", role = "form", @class = "form-signin" }))
+{
+    <table class="table table-bordered">
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ImagemCapa)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ISBN)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.DataPublicacao)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Editora)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Autor)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Texto)
+            </th>
+            <th class="text-center">
+                @Html.DisplayName("Opções")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                @if (item.ImagemCapa != null)
+                {
+                    <td class="text-center">
+                        @{
+                            var base64 = Convert.ToBase64String(item.ImagemCapa);
+                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                        }
+                        <img src='@imgSrc' style="max-width:100px; max-height:100px;" />
+                    </td>
+                }
+                else
+                {
+                    <td class="text-center">
+                        <img src="~/Content/imagens/Foto em branco.jpg" style="max-width:100px; max-height:100px;" />
+                    </td>
+                }
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.ImagemCapa)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.ISBN)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DataPublicacao)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Editora)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Autor)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Texto)
+                </td>
+
+                @if (Session["Perfil"] != null)
+                {
+                    <td class="text-center">
+                        <button class="btn btn-success center-block  BtnComprar" data-toggle="modal"
+                                data-target="#ModalMensagem">
+                            Comprar Livro
+                        </button>
+
+                        <br />
+
+                        <!--Configuração do Botão que vai Abrir o Modal, onde será definido os parametros do Modal com os dados que
+                        irá aparecer no JQuery-->
+
+                        <button class="btn btn-primary BtnDetalhes" onclick="return false"
+                                data-ImagemCapa="@item.ImagemCapa"
+                                data-ISBN="@item.ISBN"
+                                data-DataPublicacao="@item.DataPublicacao"
+                                data-Titulo="@item.Titulo"
+                                data-Editora="@item.Editora"
+                                data-Autor="@item.Autor"
+                                data-Texto="@item.Texto"
+                                data-toggle="modal"
+                                data-target="#ModalDetalhes">
+                            Detalhes
+                        </button>
+                    </td>
+                }
+                else
+                {
+                    <td class="text-center">
+                        <button class="btn btn-primary BtnDetalhes" onclick="return false"
+                                data-ImagemCapa="@item.ImagemCapa"
+                                data-ISBN="@item.ISBN"
+                                data-DataPublicacao="@item.DataPublicacao"
+                                data-Titulo="@item.Titulo"
+                                data-Editora="@item.Editora"
+                                data-Autor="@item.Autor"
+                                data-Texto="@item.Texto"
+                                data-toggle="modal"
+                                data-target="#ModalDetalhes">
+                            Detalhes
+                        </button>
+                    </td>
+                }
+
+            </tr>
+        }
+    </table>
+
+}
+
+
+<!-- Código do Modal no Bootstrap -->
+
+<div class="modal" tabindex="-1" role="dialog" id="ModalDetalhes">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="text-center">Detalhes</h5> <!--Titulo do Modal -->
+            </div>
+            <div class="modal-body">
+                <p>ISBN: <label id="ISBNModal"></label></p>
+                <br />
+                <p>Data de Publicação: <label id="DataPublicacaoModal"></label></p>
+                <br />
+                <p>Título: <label id="TituloModal"></label></p>
+                <br />
+                <p>Editora: <label id="EditoraModal"></label></p>
+                <br />
+                <p>Autor: <label id="AutorModal"></label></p>
+                <br />
+                <p>Texto: <label id="TextoModal"></label></p>
+                <br />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal" tabindex="-1" role="dialog" id="ModalMensagem">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Aviso!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>@Html.Raw(ViewBag.Mensagem)</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+@section Scripts{
+    @if (ViewBag.Mensagem != "")
+    {
+        <script>
+            $(document).ready(function () {
+                $(".BtnComprar").click(function () {
+                    $("#ModalMensagem").modal('toggle');
+                    $("#ModalMensagem").modal('show');
+                }
+                    )
+        </script>
+    }
+    <script>
+        @*Recebe os Dados do Botão *@
+        $(document).ready(function () {
+            $(".BtnDetalhes").click(function () {
+                $("#ModalDetalhes").modal('toggle');
+                $("#ModalDetalhes").modal('show');
+                var ImagemCapa = $(this).attr("data-ImagemCapa");
+                var ISBN = $(this).attr("data-ISBN");
+                var DataPublicacao = $(this).attr("data-DataPublicacao");
+                var Titulo = $(this).attr("data-Titulo");
+                var Editora = $(this).attr("data-Editora");
+                var Autor = $(this).attr("data-Autor");
+                var Texto = $(this).attr("data-Texto");
+
+
+                @* Envia os Dados para o Modal *@
+                $("#ImagemCapaModal").text(ImagemCapa);
+                $("#ISBNModal").text(ISBN);
+                $("#DataPublicacaoModal").text(DataPublicacao);
+                $("#TituloModal").text(Titulo);
+                $("#EditoraModal").text(Editora);
+                $("#AutorModal").text(Autor);
+                $("#TextoModal").text(Texto);
+
+            })
+        })
+    </script>
+
+}
+

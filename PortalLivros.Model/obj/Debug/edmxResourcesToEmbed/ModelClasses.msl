@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PortalLivrosModelStoreContainer" CdmEntityContainer="PortalLivrosEntities">
+    <EntitySetMapping Name="USUARIO">
+      <EntityTypeMapping TypeName="PortalLivrosModel.USUARIO">
+        <MappingFragment StoreEntitySet="USUARIO">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Senha" ColumnName="Senha" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LIVRO">
+      <EntityTypeMapping TypeName="PortalLivrosModel.LIVRO">
+        <MappingFragment StoreEntitySet="LIVRO">
+          <ScalarProperty Name="Texto" ColumnName="Texto" />
+          <ScalarProperty Name="Autor" ColumnName="Autor" />
+          <ScalarProperty Name="Editora" ColumnName="Editora" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="DataPublicacao" ColumnName="DataPublicacao" />
+          <ScalarProperty Name="ImagemCapa" ColumnName="ImagemCapa" />
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
