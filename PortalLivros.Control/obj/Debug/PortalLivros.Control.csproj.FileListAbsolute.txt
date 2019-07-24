@@ -22,3 +22,15 @@ C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Control\obj\Debu
 C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Control\obj\Debug\PortalLivros.Control.csproj.CopyComplete
 C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Control\obj\Debug\PortalLivros.Control.dll
 C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Control\obj\Debug\PortalLivros.Control.pdb
+C:\GitHub\PortalLivros\PortalLivros.Control\bin\Debug\PortalLivros.Control.dll
+C:\GitHub\PortalLivros\PortalLivros.Control\bin\Debug\PortalLivros.Control.pdb
+C:\GitHub\PortalLivros\PortalLivros.Control\bin\Debug\PortalLivros.Model.dll
+C:\GitHub\PortalLivros\PortalLivros.Control\bin\Debug\EntityFramework.dll
+C:\GitHub\PortalLivros\PortalLivros.Control\bin\Debug\PortalLivros.Model.pdb
+C:\GitHub\PortalLivros\PortalLivros.Control\bin\Debug\PortalLivros.Model.dll.config
+C:\GitHub\PortalLivros\PortalLivros.Control\bin\Debug\EntityFramework.xml
+C:\GitHub\PortalLivros\PortalLivros.Control\obj\Debug\PortalLivros.Control.csprojAssemblyReference.cache
+C:\GitHub\PortalLivros\PortalLivros.Control\obj\Debug\PortalLivros.Control.csproj.CoreCompileInputs.cache
+C:\GitHub\PortalLivros\PortalLivros.Control\obj\Debug\PortalLivros.Control.csproj.CopyComplete
+C:\GitHub\PortalLivros\PortalLivros.Control\obj\Debug\PortalLivros.Control.dll
+C:\GitHub\PortalLivros\PortalLivros.Control\obj\Debug\PortalLivros.Control.pdb

@@ -17,7 +17,7 @@
     <table class="table table-bordered">
         <tr>
             <th class="text-center">
-                @Html.DisplayNameFor(model => model.ImagemCapa)
+                @Html.DisplayNameFor(model => model.ImagemCaminho)
             </th>
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.ISBN)
@@ -29,13 +29,16 @@
                 @Html.DisplayNameFor(model => model.Titulo)
             </th>
             <th class="text-center">
+                @Html.DisplayNameFor(model => model.NomeGenero)
+            </th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Editora)
             </th>
             <th class="text-center">
-                @Html.DisplayNameFor(model => model.Autor)
+                @Html.DisplayNameFor(model => model.NomeAutor)
             </th>
             <th class="text-center">
-                @Html.DisplayNameFor(model => model.Texto)
+                @Html.DisplayNameFor(model => model.Sinopse)
             </th>
             <th class="text-center">
                 @Html.DisplayName("Opções")
@@ -45,91 +48,95 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                @if (item.ImagemCapa != null)
-                {
-                    <td class="text-center">
-                        @{
-                            var base64 = Convert.ToBase64String(item.ImagemCapa);
-                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-                        }
-                        <img src='@imgSrc' style="max-width:100px; max-height:100px;" />
-                    </td>
+    <tr>
+        @if (!String.IsNullOrEmpty(item.ImagemCaminho))
+        {
+            <td class="text-center">
+                @{
+                    //var base64 = Convert.ToBase64String(item.ImagemCaminho);
+                    //var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                    var imgSrc = Url.Content(item.ImagemCaminho);
+
                 }
-                else
-                {
-                    <td class="text-center">
-                        <img src="~/Content/imagens/Foto em branco.jpg" style="max-width:100px; max-height:100px;" />
-                    </td>
-                }
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.ImagemCapa)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.ISBN)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.DataPublicacao)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Titulo)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Editora)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Autor)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Texto)
-                </td>
+                <img src='@imgSrc' style="max-width:100px; max-height:100px;" />
+            </td>
+        }
+        else
+        {
+            <td class="text-center">
+                <img src="~/Imagens/Foto em branco.jpg" style="max-width:100px; max-height:100px;" />
+            </td>
+        }
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.ISBN)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.DataPublicacao)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.Titulo)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.NomeGenero)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.Editora)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.NomeAutor)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.Sinopse)
+        </td>
 
-                @if (Session["Perfil"] != null)
-                {
-                    <td class="text-center">
-                        <button class="btn btn-success center-block  BtnComprar" data-toggle="modal"
-                                data-target="#ModalMensagem">
-                            Comprar Livro
-                        </button>
+        @if (Session["Perfil"] != null)
+        {
+            <td class="text-center">
+                <button class="btn btn-success center-block  BtnComprar" data-toggle="modal"
+                        data-target="#ModalMensagem">
+                    Comprar Livro
+                </button>
 
-                        <br />
+                <br />
 
-                        <!--Configuração do Botão que vai Abrir o Modal, onde será definido os parametros do Modal com os dados que
-                        irá aparecer no JQuery-->
+                <!--Configuração do Botão que vai Abrir o Modal, onde será definido os parametros do Modal com os dados que
+            irá aparecer no JQuery-->
 
-                        <button class="btn btn-primary BtnDetalhes" onclick="return false"
-                                data-ImagemCapa="@item.ImagemCapa"
-                                data-ISBN="@item.ISBN"
-                                data-DataPublicacao="@item.DataPublicacao"
-                                data-Titulo="@item.Titulo"
-                                data-Editora="@item.Editora"
-                                data-Autor="@item.Autor"
-                                data-Texto="@item.Texto"
-                                data-toggle="modal"
-                                data-target="#ModalDetalhes">
-                            Detalhes
-                        </button>
-                    </td>
-                }
-                else
-                {
-                    <td class="text-center">
-                        <button class="btn btn-primary BtnDetalhes" onclick="return false"
-                                data-ImagemCapa="@item.ImagemCapa"
-                                data-ISBN="@item.ISBN"
-                                data-DataPublicacao="@item.DataPublicacao"
-                                data-Titulo="@item.Titulo"
-                                data-Editora="@item.Editora"
-                                data-Autor="@item.Autor"
-                                data-Texto="@item.Texto"
-                                data-toggle="modal"
-                                data-target="#ModalDetalhes">
-                            Detalhes
-                        </button>
-                    </td>
-                }
+                <button class="btn btn-primary BtnDetalhes" onclick="return false"
+                        data-ImagemCaminho="@item.ImagemCaminho"
+                        data-ISBN="@item.ISBN"
+                        data-DataPublicacao="@item.DataPublicacao"
+                        data-Titulo="@item.Titulo"
+                        data-Genero="@item.NomeGenero"
+                        data-Editora="@item.Editora"
+                        data-Autor="@item.NomeAutor"
+                        data-Sinopse="@item.Sinopse"
+                        data-toggle="modal"
+                        data-target="#ModalDetalhes">
+                    Detalhes
+                </button>
+            </td>
+        }
+        else
+        {
+            <td class="text-center">
+                <button class="btn btn-primary BtnDetalhes" onclick="return false"
+                        data-ImagemCaminho="@item.ImagemCaminho"
+                        data-ISBN="@item.ISBN"
+                        data-DataPublicacao="@item.DataPublicacao"
+                        data-Titulo="@item.Titulo"
+                        data-Genero="@item.NomeGenero"
+                        data-Editora="@item.Editora"
+                        data-Autor="@item.NomeAutor"
+                        data-Sinopse="@item.Sinopse"
+                        data-toggle="modal"
+                        data-target="#ModalDetalhes">
+                    Detalhes
+                </button>
+            </td>
+        }
 
-            </tr>
+    </tr>
         }
     </table>
 
@@ -154,11 +161,13 @@
                 <br />
                 <p>Título: <label id="TituloModal"></label></p>
                 <br />
+                <p>Gênero: <label id="GeneroModal"></label></p>
+                <br />
                 <p>Editora: <label id="EditoraModal"></label></p>
                 <br />
                 <p>Autor: <label id="AutorModal"></label></p>
                 <br />
-                <p>Texto: <label id="TextoModal"></label></p>
+                <p>Sinopse: <label id="SinopseModal"></label></p>
                 <br />
             </div>
             <div class="modal-footer">
@@ -208,23 +217,25 @@
             $(".BtnDetalhes").click(function () {
                 $("#ModalDetalhes").modal('toggle');
                 $("#ModalDetalhes").modal('show');
-                var ImagemCapa = $(this).attr("data-ImagemCapa");
+                var ImagemCaminho = $(this).attr("data-ImagemCaminho");
                 var ISBN = $(this).attr("data-ISBN");
                 var DataPublicacao = $(this).attr("data-DataPublicacao");
                 var Titulo = $(this).attr("data-Titulo");
+                var Genero = $(this).attr("data-Genero");
                 var Editora = $(this).attr("data-Editora");
                 var Autor = $(this).attr("data-Autor");
-                var Texto = $(this).attr("data-Texto");
+                var Sinopse = $(this).attr("data-Sinopse");
 
 
                 @* Envia os Dados para o Modal *@
-                $("#ImagemCapaModal").text(ImagemCapa);
+                $("#ImagemCapaModal").text(ImagemCaminho);
                 $("#ISBNModal").text(ISBN);
                 $("#DataPublicacaoModal").text(DataPublicacao);
                 $("#TituloModal").text(Titulo);
+                $("#GeneroModal").text(Genero);
                 $("#EditoraModal").text(Editora);
                 $("#AutorModal").text(Autor);
-                $("#TextoModal").text(Texto);
+                $("#SinopseModal").text(Sinopse);
 
             })
         })

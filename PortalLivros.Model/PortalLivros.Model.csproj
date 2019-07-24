@@ -80,7 +80,11 @@
     </Compile>
     <Compile Include="Partial\Livro.cs" />
     <Compile Include="Partial\Usuario.cs" />
+    <Compile Include="Partial\vw_Livro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\RepositoryAutor.cs" />
+    <Compile Include="Repositories\RepositoryEditora.cs" />
+    <Compile Include="Repositories\RepositoryGenero.cs" />
     <Compile Include="Repositories\RepositoryLivro.cs" />
     <Compile Include="Repositories\RepositoryUsuario.cs" />
     <Compile Include="USUARIO.cs">

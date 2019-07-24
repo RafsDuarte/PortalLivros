@@ -1,26 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="PortalLivrosModelStoreContainer" CdmEntityContainer="PortalLivrosEntities">
-    <EntitySetMapping Name="USUARIO">
-      <EntityTypeMapping TypeName="PortalLivrosModel.USUARIO">
-        <MappingFragment StoreEntitySet="USUARIO">
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Senha" ColumnName="Senha" />
+    <EntitySetMapping Name="AUTOR">
+      <EntityTypeMapping TypeName="PortalLivrosModel.AUTOR">
+        <MappingFragment StoreEntitySet="AUTOR">
+          <ScalarProperty Name="NomeAutor" ColumnName="NomeAutor" />
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Nome" ColumnName="Nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EDITORA">
+      <EntityTypeMapping TypeName="PortalLivrosModel.EDITORA">
+        <MappingFragment StoreEntitySet="EDITORA">
+          <ScalarProperty Name="Editora" ColumnName="Editora" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GENERO">
+      <EntityTypeMapping TypeName="PortalLivrosModel.GENERO">
+        <MappingFragment StoreEntitySet="GENERO">
+          <ScalarProperty Name="NomeGenero" ColumnName="NomeGenero" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LIVRO">
       <EntityTypeMapping TypeName="PortalLivrosModel.LIVRO">
         <MappingFragment StoreEntitySet="LIVRO">
-          <ScalarProperty Name="Texto" ColumnName="Texto" />
-          <ScalarProperty Name="Autor" ColumnName="Autor" />
-          <ScalarProperty Name="Editora" ColumnName="Editora" />
+          <ScalarProperty Name="ImagemCaminho" ColumnName="ImagemCaminho" />
+          <ScalarProperty Name="Sinopse" ColumnName="Sinopse" />
           <ScalarProperty Name="Titulo" ColumnName="Titulo" />
           <ScalarProperty Name="DataPublicacao" ColumnName="DataPublicacao" />
-          <ScalarProperty Name="ImagemCapa" ColumnName="ImagemCapa" />
           <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="IDAutor" ColumnName="IDAutor" />
+          <ScalarProperty Name="IDGenero" ColumnName="IDGenero" />
+          <ScalarProperty Name="IDEditora" ColumnName="IDEditora" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIO">
+      <EntityTypeMapping TypeName="PortalLivrosModel.USUARIO">
+        <MappingFragment StoreEntitySet="USUARIO">
+          <ScalarProperty Name="SuperAdm" ColumnName="SuperAdm" />
+          <ScalarProperty Name="Adm" ColumnName="Adm" />
+          <ScalarProperty Name="Senha" ColumnName="Senha" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_LIVRO">
+      <EntityTypeMapping TypeName="PortalLivrosModel.vw_LIVRO">
+        <MappingFragment StoreEntitySet="vw_LIVRO">
+          <ScalarProperty Name="ImagemCaminho" ColumnName="ImagemCaminho" />
+          <ScalarProperty Name="Sinopse" ColumnName="Sinopse" />
+          <ScalarProperty Name="NomeAutor" ColumnName="NomeAutor" />
+          <ScalarProperty Name="Editora" ColumnName="Editora" />
+          <ScalarProperty Name="NomeGenero" ColumnName="NomeGenero" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="DataPublicacao" ColumnName="DataPublicacao" />
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="IDEditora" ColumnName="IDEditora" />
+          <ScalarProperty Name="IDAutor" ColumnName="IDAutor" />
+          <ScalarProperty Name="IDGenero" ColumnName="IDGenero" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

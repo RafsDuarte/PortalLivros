@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace PortalLivros.Model
 {
-    [MetadataType(typeof(MD_LIVRO))]
-    public partial class LIVRO
+    [MetadataType(typeof(MD_vw_LIVRO))]
+     public partial class vw_LIVRO
     {
-        internal class MD_LIVRO
+        internal class MD_vw_LIVRO
         {
             [DisplayName("ID")]
             public int ID { get; set; }
@@ -28,8 +28,18 @@ namespace PortalLivros.Model
             [DisplayName("Título")]
             public string Titulo { get; set; }
 
+            [DisplayName("Editora")]
+            public string Editora { get; set; }
+
+            [DisplayName("Autor")]
+            public string NomeAutor { get; set; }
+
+            [DisplayName("Gênero")]
+            public string NomeGenero { get; set; }
+
             [DisplayName("Sinopse")]
             public string Sinopse { get; set; }
         }
+
     }
 }

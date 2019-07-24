@@ -13,10 +13,13 @@ namespace PortalLivros.Web.Controllers
     public class MuralLivrosController : Controller
     {
         private RepositoryLivro _repository = new RepositoryLivro();
+        private RepositoryGenero _repositoryG = new RepositoryGenero();
+        private RepositoryAutor _repositoryA = new RepositoryAutor();
+        private RepositoryEditora _repositoryE = new RepositoryEditora();
 
         public ActionResult Estante()
         {
-            List<LIVRO> Livros = _repository.ListarLivros();
+            List<vw_LIVRO> Livros = _repository.ListarLivros();
             return View(Livros);
         }
 
@@ -26,39 +29,89 @@ namespace PortalLivros.Web.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CriarLivro(LIVRO oLivro, HttpPostedFileBase upload)
+        public ActionResult CriarLivro(vw_LIVRO oLivro, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
-                //try
-                //{
-                //    if (upload != null && upload.ContentLength > 0)
-                //    {
-                //        //String s_data = upload.ToString();
-                //        //string converted = s_data.Replace('-', '+');
-                //        //converted = converted.Replace('_', '/');
-                //        //byte[] data = Convert.FromBase64String(s_data);
-                //        //string decodedString = Encoding.UTF8.GetString(data);
-                //        var arqImagem = new LIVRO();
-                //        ////string converted = upload.Replace('-', '+');
-                //        ////converted = converted.Replace('_', '/');
-                //        ////byte[] data = Convert.FromBase64String(converted);
-                //        ////string decodedString = Encoding.UTF8.GetString(data);
-                //        using (var reader = new BinaryReader(upload.InputStream))
-                //        {
-                //            arqImagem.ImagemCapa = reader.ReadBytes(upload.ContentLength);
-                //            //arqImagem.ImagemCapa = Convert.FromBase64String(arqImagem.ImagemCapa);
-                //        }
-                //        oLivro.ImagemCapa = arqImagem.ImagemCapa;
-                //        oLivro.ImagemCapa = new byte[upload.ContentLength];
-                //        upload.InputStream.Read(oLivro.ImagemCapa, 0, upload.ContentLength);
-                //    }
-                //}
-                //catch(Exception ex)
-                //{
-                //    throw ex;
-                //}
-                _repository.Incluir(oLivro);
+                List<EDITORA> Editoras = _repositoryE.ListarEditoras();
+                List<AUTOR> Autores = _repositoryA.ListarAutores();
+                List<GENERO> Generos = _repositoryG.ListarGeneros();
+                LIVRO LivroGravar = new LIVRO();
+                GENERO GeneroAtual = new GENERO();
+                EDITORA EditoraAtual = new EDITORA();
+                AUTOR AutorAtual = new AUTOR();
+
+                #region UploadArquivo
+                int ups = Request.Files.Count;
+                if (ups > 0)
+                {
+                    upload = Request.Files[0];
+                    if (upload.ContentLength > 0)
+                    {
+                        string path = Server.MapPath("~/Uploads/");
+                        if (!Directory.Exists(path))
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+                        LivroGravar.ImagemCaminho = "~/Uploads/" + upload.FileName;
+                        upload.SaveAs(path + Path.GetFileName(upload.FileName));
+                    }
+                }
+                #endregion
+
+
+                LivroGravar.ISBN = oLivro.ISBN;
+                LivroGravar.Sinopse = oLivro.Sinopse;
+                LivroGravar.Titulo = oLivro.Titulo;
+                LivroGravar.DataPublicacao = oLivro.DataPublicacao;
+                #region GENERO
+                GeneroAtual = Generos.Where(x => x.NomeGenero.ToLower() == oLivro.NomeGenero.ToLower()).Select(x => x).FirstOrDefault();
+                if (GeneroAtual != null)
+                {
+                    LivroGravar.IDGenero = GeneroAtual.ID;
+                }
+                else
+                {
+                    GENERO novogenero = new GENERO() { NomeGenero = oLivro.NomeGenero };
+                    _repositoryG.Incluir(novogenero);
+                    GeneroAtual = novogenero;
+                    LivroGravar.IDGenero = novogenero.ID;
+                }
+                
+                #endregion
+                #region Autor
+                AutorAtual = Autores.Where(x => x.NomeAutor.ToLower() == oLivro.NomeAutor.ToLower()).Select(x => x).FirstOrDefault();
+                if (AutorAtual != null)
+                {
+                    LivroGravar.IDAutor = AutorAtual.ID;
+                }
+                else
+                {
+                    AUTOR novoautor = new AUTOR() { NomeAutor = oLivro.NomeAutor };
+                    _repositoryA.Incluir(novoautor);
+                    AutorAtual = novoautor;
+                    LivroGravar.IDAutor = novoautor.ID;
+                }
+                
+                #endregion
+                #region Editora
+                EditoraAtual = Editoras.Where(x => x.Editora.ToLower() == oLivro.Editora.ToLower()).Select(x => x).FirstOrDefault();
+                if (EditoraAtual != null)
+                {
+                    LivroGravar.IDEditora = EditoraAtual.ID;
+                }
+                else
+                {
+                    EDITORA novaeditora = new EDITORA() { Editora = oLivro.Editora };
+                    _repositoryE.Incluir(novaeditora);
+                    EditoraAtual = novaeditora;
+                    LivroGravar.IDEditora = novaeditora.ID;
+                }
+
+                #endregion
+
+                _repository.Incluir(LivroGravar);
+                
                 return RedirectToAction("Estante");
             }
 

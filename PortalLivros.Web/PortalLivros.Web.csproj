@@ -132,8 +132,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\LivrosController.cs" />
-    <Compile Include="Views\LIVROController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -144,6 +142,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagens\Foto em branco.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -157,6 +156,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Uploads\AlbumArt_{23D1968B-86ED-44CB-AA1A-D4BB5E21AC79}_Large.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -173,11 +173,6 @@
     <Content Include="Views\MuralLivros\CriarLivro.cshtml" />
     <Content Include="Views\MuralLivros\Delete.cshtml" />
     <Content Include="Views\MuralLivros\Edit.cshtml" />
-    <Content Include="Views\LIVRO\Create.cshtml" />
-    <Content Include="Views\LIVRO\Delete.cshtml" />
-    <Content Include="Views\LIVRO\Details.cshtml" />
-    <Content Include="Views\LIVRO\Edit.cshtml" />
-    <Content Include="Views\LIVRO\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

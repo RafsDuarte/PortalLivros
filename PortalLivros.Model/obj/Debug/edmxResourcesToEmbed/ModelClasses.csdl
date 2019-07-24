@@ -1,29 +1,137 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="PortalLivrosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="PortalLivrosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AUTOR" EntityType="PortalLivrosModel.AUTOR" />
+    <EntitySet Name="EDITORA" EntityType="PortalLivrosModel.EDITORA" />
+    <EntitySet Name="GENERO" EntityType="PortalLivrosModel.GENERO" />
+    <EntitySet Name="LIVRO" EntityType="PortalLivrosModel.LIVRO" />
+    <EntitySet Name="USUARIO" EntityType="PortalLivrosModel.USUARIO" />
+    <AssociationSet Name="FK_LIVRO_AUTOR" Association="PortalLivrosModel.FK_LIVRO_AUTOR">
+      <End Role="AUTOR" EntitySet="AUTOR" />
+      <End Role="LIVRO" EntitySet="LIVRO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LIVRO_EDITORA" Association="PortalLivrosModel.FK_LIVRO_EDITORA">
+      <End Role="EDITORA" EntitySet="EDITORA" />
+      <End Role="LIVRO" EntitySet="LIVRO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LIVRO_GENERO" Association="PortalLivrosModel.FK_LIVRO_GENERO">
+      <End Role="GENERO" EntitySet="GENERO" />
+      <End Role="LIVRO" EntitySet="LIVRO" />
+    </AssociationSet>
+    <EntitySet Name="vw_LIVRO" EntityType="PortalLivrosModel.vw_LIVRO" />
+  </EntityContainer>
+  <EntityType Name="AUTOR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NomeAutor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="LIVRO" Relationship="PortalLivrosModel.FK_LIVRO_AUTOR" FromRole="AUTOR" ToRole="LIVRO" />
+  </EntityType>
+  <EntityType Name="EDITORA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Editora" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="LIVRO" Relationship="PortalLivrosModel.FK_LIVRO_EDITORA" FromRole="EDITORA" ToRole="LIVRO" />
+  </EntityType>
+  <EntityType Name="GENERO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NomeGenero" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="LIVRO" Relationship="PortalLivrosModel.FK_LIVRO_GENERO" FromRole="GENERO" ToRole="LIVRO" />
+  </EntityType>
+  <EntityType Name="LIVRO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDEditora" Type="Int32" Nullable="false" />
+    <Property Name="IDGenero" Type="Int32" Nullable="false" />
+    <Property Name="IDAutor" Type="Int32" Nullable="false" />
+    <Property Name="ISBN" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="DataPublicacao" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Titulo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sinopse" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="ImagemCaminho" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AUTOR" Relationship="PortalLivrosModel.FK_LIVRO_AUTOR" FromRole="LIVRO" ToRole="AUTOR" />
+    <NavigationProperty Name="EDITORA" Relationship="PortalLivrosModel.FK_LIVRO_EDITORA" FromRole="LIVRO" ToRole="EDITORA" />
+    <NavigationProperty Name="GENERO" Relationship="PortalLivrosModel.FK_LIVRO_GENERO" FromRole="LIVRO" ToRole="GENERO" />
+  </EntityType>
   <EntityType Name="USUARIO">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Senha" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Senha" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="Adm" Type="Boolean" Nullable="false" />
+    <Property Name="SuperAdm" Type="Boolean" Nullable="false" />
   </EntityType>
-  <EntityContainer Name="PortalLivrosEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
-    <EntitySet Name="LIVRO" EntityType="PortalLivrosModel.LIVRO" />
-  </EntityContainer>
-  <EntityType Name="LIVRO">
+  <Association Name="FK_LIVRO_AUTOR">
+    <End Type="PortalLivrosModel.AUTOR" Role="AUTOR" Multiplicity="1" />
+    <End Type="PortalLivrosModel.LIVRO" Role="LIVRO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AUTOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LIVRO">
+        <PropertyRef Name="IDAutor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LIVRO_EDITORA">
+    <End Type="PortalLivrosModel.EDITORA" Role="EDITORA" Multiplicity="1" />
+    <End Type="PortalLivrosModel.LIVRO" Role="LIVRO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EDITORA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LIVRO">
+        <PropertyRef Name="IDEditora" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LIVRO_GENERO">
+    <End Type="PortalLivrosModel.GENERO" Role="GENERO" Multiplicity="1" />
+    <End Type="PortalLivrosModel.LIVRO" Role="LIVRO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GENERO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LIVRO">
+        <PropertyRef Name="IDGenero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="vw_LIVRO">
     <Key>
       <PropertyRef Name="ID" />
+      <PropertyRef Name="IDGenero" />
+      <PropertyRef Name="IDAutor" />
+      <PropertyRef Name="IDEditora" />
+      <PropertyRef Name="ISBN" />
+      <PropertyRef Name="DataPublicacao" />
+      <PropertyRef Name="Titulo" />
+      <PropertyRef Name="NomeGenero" />
+      <PropertyRef Name="Editora" />
+      <PropertyRef Name="NomeAutor" />
+      <PropertyRef Name="Sinopse" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="IDGenero" Type="Int32" Nullable="false" />
+    <Property Name="IDAutor" Type="Int32" Nullable="false" />
+    <Property Name="IDEditora" Type="Int32" Nullable="false" />
     <Property Name="ISBN" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
-    <Property Name="ImagemCapa" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="DataPublicacao" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Titulo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Editora" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Autor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Texto" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="NomeGenero" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Editora" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="NomeAutor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Sinopse" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ImagemCaminho" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

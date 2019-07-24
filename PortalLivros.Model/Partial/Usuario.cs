@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PortalLivros.Model.Partial
+namespace PortalLivros.Model
 {
     [MetadataType(typeof(MD_USUARIO))]
     public partial class USUARIO

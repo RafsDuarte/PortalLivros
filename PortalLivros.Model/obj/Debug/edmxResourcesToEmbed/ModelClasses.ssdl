@@ -1,17 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="PortalLivrosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AUTOR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomeAutor" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EDITORA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Editora" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GENERO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomeGenero" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
   <EntityType Name="LIVRO">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDEditora" Type="int" Nullable="false" />
+    <Property Name="IDGenero" Type="int" Nullable="false" />
+    <Property Name="IDAutor" Type="int" Nullable="false" />
     <Property Name="ISBN" Type="varchar" MaxLength="13" Nullable="false" />
-    <Property Name="ImagemCapa" Type="image" />
     <Property Name="DataPublicacao" Type="date" Nullable="false" />
     <Property Name="Titulo" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Editora" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Autor" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Texto" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Sinopse" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="ImagemCaminho" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="USUARIO">
     <Key>
@@ -19,11 +41,108 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Senha" Type="varchar" MaxLength="15" Nullable="false" />
-    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Senha" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="Adm" Type="bit" Nullable="false" />
+    <Property Name="SuperAdm" Type="bit" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PortalLivros.dbo.vw_LIVRO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_LIVRO">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="IDGenero" />
+      <PropertyRef Name="IDAutor" />
+      <PropertyRef Name="IDEditora" />
+      <PropertyRef Name="ISBN" />
+      <PropertyRef Name="DataPublicacao" />
+      <PropertyRef Name="Titulo" />
+      <PropertyRef Name="NomeGenero" />
+      <PropertyRef Name="Editora" />
+      <PropertyRef Name="NomeAutor" />
+      <PropertyRef Name="Sinopse" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="IDGenero" Type="int" Nullable="false" />
+    <Property Name="IDAutor" Type="int" Nullable="false" />
+    <Property Name="IDEditora" Type="int" Nullable="false" />
+    <Property Name="ISBN" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="DataPublicacao" Type="date" Nullable="false" />
+    <Property Name="Titulo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NomeGenero" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Editora" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="NomeAutor" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Sinopse" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="ImagemCaminho" Type="varchar(max)" />
+  </EntityType>
+  <Association Name="FK_LIVRO_AUTOR">
+    <End Role="AUTOR" Type="Self.AUTOR" Multiplicity="1" />
+    <End Role="LIVRO" Type="Self.LIVRO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AUTOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LIVRO">
+        <PropertyRef Name="IDAutor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LIVRO_EDITORA">
+    <End Role="EDITORA" Type="Self.EDITORA" Multiplicity="1" />
+    <End Role="LIVRO" Type="Self.LIVRO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EDITORA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LIVRO">
+        <PropertyRef Name="IDEditora" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LIVRO_GENERO">
+    <End Role="GENERO" Type="Self.GENERO" Multiplicity="1" />
+    <End Role="LIVRO" Type="Self.LIVRO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GENERO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LIVRO">
+        <PropertyRef Name="IDGenero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="PortalLivrosModelStoreContainer">
+    <EntitySet Name="AUTOR" EntityType="Self.AUTOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EDITORA" EntityType="Self.EDITORA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GENERO" EntityType="Self.GENERO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LIVRO" EntityType="Self.LIVRO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_LIVRO" EntityType="Self.vw_LIVRO" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_LIVRO].[ID] AS [ID], 
+    [vw_LIVRO].[IDGenero] AS [IDGenero], 
+    [vw_LIVRO].[IDAutor] AS [IDAutor], 
+    [vw_LIVRO].[IDEditora] AS [IDEditora], 
+    [vw_LIVRO].[ISBN] AS [ISBN], 
+    [vw_LIVRO].[DataPublicacao] AS [DataPublicacao], 
+    [vw_LIVRO].[Titulo] AS [Titulo], 
+    [vw_LIVRO].[NomeGenero] AS [NomeGenero], 
+    [vw_LIVRO].[Editora] AS [Editora], 
+    [vw_LIVRO].[NomeAutor] AS [NomeAutor], 
+    [vw_LIVRO].[Sinopse] AS [Sinopse], 
+    [vw_LIVRO].[ImagemCaminho] AS [ImagemCaminho]
+    FROM [dbo].[vw_LIVRO] AS [vw_LIVRO]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_LIVRO_AUTOR" Association="Self.FK_LIVRO_AUTOR">
+      <End Role="AUTOR" EntitySet="AUTOR" />
+      <End Role="LIVRO" EntitySet="LIVRO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LIVRO_EDITORA" Association="Self.FK_LIVRO_EDITORA">
+      <End Role="EDITORA" EntitySet="EDITORA" />
+      <End Role="LIVRO" EntitySet="LIVRO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LIVRO_GENERO" Association="Self.FK_LIVRO_GENERO">
+      <End Role="GENERO" EntitySet="GENERO" />
+      <End Role="LIVRO" EntitySet="LIVRO" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>
