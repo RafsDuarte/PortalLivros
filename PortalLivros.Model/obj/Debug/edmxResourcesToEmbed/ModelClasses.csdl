@@ -55,7 +55,7 @@
     <Property Name="ISBN" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
     <Property Name="DataPublicacao" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Titulo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Sinopse" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Sinopse" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="ImagemCaminho" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="AUTOR" Relationship="PortalLivrosModel.FK_LIVRO_AUTOR" FromRole="LIVRO" ToRole="AUTOR" />
     <NavigationProperty Name="EDITORA" Relationship="PortalLivrosModel.FK_LIVRO_EDITORA" FromRole="LIVRO" ToRole="EDITORA" />

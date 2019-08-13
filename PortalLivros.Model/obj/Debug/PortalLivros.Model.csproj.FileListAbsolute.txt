@@ -21,10 +21,6 @@ C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Model\obj\Debug\
 C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Model\obj\Debug\PortalLivros.Model.csproj.CopyComplete
 C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Model\obj\Debug\PortalLivros.Model.dll
 C:\Users\rafin\Downloads\PortalLivros\PortalLivros\PortalLivros.Model\obj\Debug\PortalLivros.Model.pdb
-C:\GitHub\PortalLivros\PortalLivros.Model\obj\Debug\PortalLivros.Model.csprojAssemblyReference.cache
-C:\GitHub\PortalLivros\PortalLivros.Model\obj\Debug\PortalLivros.Model.csproj.CoreCompileInputs.cache
-C:\GitHub\PortalLivros\PortalLivros.Model\obj\Debug\PortalLivros.Model.dll
-C:\GitHub\PortalLivros\PortalLivros.Model\obj\Debug\PortalLivros.Model.pdb
 C:\GitHub\PortalLivros\PortalLivros.Model\bin\Debug\PortalLivros.Model.dll.config
 C:\GitHub\PortalLivros\PortalLivros.Model\bin\Debug\PortalLivros.Model.dll
 C:\GitHub\PortalLivros\PortalLivros.Model\bin\Debug\PortalLivros.Model.pdb
@@ -32,4 +28,8 @@ C:\GitHub\PortalLivros\PortalLivros.Model\bin\Debug\EntityFramework.dll
 C:\GitHub\PortalLivros\PortalLivros.Model\bin\Debug\EntityFramework.SqlServer.dll
 C:\GitHub\PortalLivros\PortalLivros.Model\bin\Debug\EntityFramework.xml
 C:\GitHub\PortalLivros\PortalLivros.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\GitHub\PortalLivros\PortalLivros.Model\obj\Debug\PortalLivros.Model.csprojAssemblyReference.cache
+C:\GitHub\PortalLivros\PortalLivros.Model\obj\Debug\PortalLivros.Model.csproj.CoreCompileInputs.cache
 C:\GitHub\PortalLivros\PortalLivros.Model\obj\Debug\PortalLivros.Model.csproj.CopyComplete
+C:\GitHub\PortalLivros\PortalLivros.Model\obj\Debug\PortalLivros.Model.dll
+C:\GitHub\PortalLivros\PortalLivros.Model\obj\Debug\PortalLivros.Model.pdb

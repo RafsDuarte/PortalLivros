@@ -11,6 +11,27 @@
     @Html.ActionLink("Criar Novo Livro", "CriarLivro", "MuralLivros")
 </p>
 
+@Html.Label("Filtrar por: ", htmlAttributes: new { @class = "control-label" })
+
+@using (Html.BeginForm("FiltrarLivros", "MuralLivros", FormMethod.Get, new { role = "form", @class = "form-filter" }))
+{
+<div class="form-inline">
+    <div class="form-group" style="margin-right: 10px">
+        @Html.Label("Gênero", htmlAttributes: new { @class = "control-label", @style = "margin-right: 5px" })
+        @Html.DropDownList("GeneroLivros", null, "Selecione um gênero", htmlAttributes: new { @class = "form-control" })
+    </div>
+    <div class="form-group" style="margin-right: 10px">
+        @Html.Label("Autor", htmlAttributes: new { @class = "control-label", @style = "margin-right: 5px" })
+        @Html.DropDownList("AutorLivros", null, "Selecione um autor", htmlAttributes: new { @class = "form-control" })
+    </div>
+    <div class="form-group" style="margin-right: 10px">
+        @Html.Label("Editora", htmlAttributes: new { @class = "control-label", @style = "margin-right: 5px" })
+        @Html.DropDownList("EditoraLivros", null, "Selecione um gênero", htmlAttributes: new { @class = "form-control" })
+    </div>
+        <input type="submit" value="Filtrar" class="btn btn-default" />
+</div>
+}
+<br />
 
 @using (Html.BeginForm("CapturarAmigo", "Home", FormMethod.Get, new { id = "cadastrar-form", role = "form", @class = "form-signin" }))
 {
@@ -38,9 +59,6 @@
                 @Html.DisplayNameFor(model => model.NomeAutor)
             </th>
             <th class="text-center">
-                @Html.DisplayNameFor(model => model.Sinopse)
-            </th>
-            <th class="text-center">
                 @Html.DisplayName("Opções")
             </th>
             <th></th>
@@ -48,95 +66,76 @@
 
         @foreach (var item in Model)
         {
-    <tr>
-        @if (!String.IsNullOrEmpty(item.ImagemCaminho))
-        {
-            <td class="text-center">
-                @{
-                    //var base64 = Convert.ToBase64String(item.ImagemCaminho);
-                    //var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-                    var imgSrc = Url.Content(item.ImagemCaminho);
+            <tr>
+                @if (!String.IsNullOrEmpty(item.ImagemCaminho))
+                {
+                    <td class="text-center">
+                        @{
+                            var imgSrc = Url.Content(item.ImagemCaminho);
 
+                        }
+                        <img src='@imgSrc' style="max-width:100px; max-height:100px;" />
+                    </td>
                 }
-                <img src='@imgSrc' style="max-width:100px; max-height:100px;" />
-            </td>
-        }
-        else
-        {
-            <td class="text-center">
-                <img src="~/Imagens/Foto em branco.jpg" style="max-width:100px; max-height:100px;" />
-            </td>
-        }
-        <td class="text-center">
-            @Html.DisplayFor(modelItem => item.ISBN)
-        </td>
-        <td class="text-center">
-            @Html.DisplayFor(modelItem => item.DataPublicacao)
-        </td>
-        <td class="text-center">
-            @Html.DisplayFor(modelItem => item.Titulo)
-        </td>
-        <td class="text-center">
-            @Html.DisplayFor(modelItem => item.NomeGenero)
-        </td>
-        <td class="text-center">
-            @Html.DisplayFor(modelItem => item.Editora)
-        </td>
-        <td class="text-center">
-            @Html.DisplayFor(modelItem => item.NomeAutor)
-        </td>
-        <td class="text-center">
-            @Html.DisplayFor(modelItem => item.Sinopse)
-        </td>
+                else
+                {
+                    <td class="text-center">
+                        <img src="~/Imagens/Foto em branco.jpg" style="max-width:100px; max-height:100px;" />
+                    </td>
+                }
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.ISBN)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DataPublicacao)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.NomeGenero)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Editora)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.NomeAutor)
+                </td>
 
-        @if (Session["Perfil"] != null)
-        {
-            <td class="text-center">
-                <button class="btn btn-success center-block  BtnComprar" data-toggle="modal"
-                        data-target="#ModalMensagem">
-                    Comprar Livro
-                </button>
+                @if (Session["Perfil"] != null)
+                {
+                    <td class="text-center">
+                        <button class="btn btn-success center-block  BtnComprar" data-toggle="modal"
+                                data-target="#ModalMensagem">
+                            Comprar Livro
+                        </button>
 
-                <br />
+                        <br />
 
-                <!--Configuração do Botão que vai Abrir o Modal, onde será definido os parametros do Modal com os dados que
-            irá aparecer no JQuery-->
+                        <!--Configuração do Botão que vai Abrir o Modal, onde será definido os parametros do Modal com os dados que
+                        irá aparecer no JQuery-->
 
-                <button class="btn btn-primary BtnDetalhes" onclick="return false"
-                        data-ImagemCaminho="@item.ImagemCaminho"
-                        data-ISBN="@item.ISBN"
-                        data-DataPublicacao="@item.DataPublicacao"
-                        data-Titulo="@item.Titulo"
-                        data-Genero="@item.NomeGenero"
-                        data-Editora="@item.Editora"
-                        data-Autor="@item.NomeAutor"
-                        data-Sinopse="@item.Sinopse"
-                        data-toggle="modal"
-                        data-target="#ModalDetalhes">
-                    Detalhes
-                </button>
-            </td>
-        }
-        else
-        {
-            <td class="text-center">
-                <button class="btn btn-primary BtnDetalhes" onclick="return false"
-                        data-ImagemCaminho="@item.ImagemCaminho"
-                        data-ISBN="@item.ISBN"
-                        data-DataPublicacao="@item.DataPublicacao"
-                        data-Titulo="@item.Titulo"
-                        data-Genero="@item.NomeGenero"
-                        data-Editora="@item.Editora"
-                        data-Autor="@item.NomeAutor"
-                        data-Sinopse="@item.Sinopse"
-                        data-toggle="modal"
-                        data-target="#ModalDetalhes">
-                    Detalhes
-                </button>
-            </td>
-        }
+                        <button class="btn btn-primary BtnSinopse" onclick="return false"
+                                data-Sinopse="@item.Sinopse"
+                                data-toggle="modal"
+                                data-target="#ModalSinopse">
+                            Sinopse
+                        </button>
+                    </td>
+                }
+                else
+                {
+                    <td class="text-center">
+                        <button class="btn btn-primary BtnSinopse" onclick="return false"
+                                data-Sinopse="@item.Sinopse"
+                                data-toggle="modal"
+                                data-target="#ModalSinopse">
+                            Sinopse
+                        </button>
+                    </td>
+                }
 
-    </tr>
+            </tr>
         }
     </table>
 
@@ -145,29 +144,17 @@
 
 <!-- Código do Modal no Bootstrap -->
 
-<div class="modal" tabindex="-1" role="dialog" id="ModalDetalhes">
+<div class="modal" tabindex="-1" role="dialog" id="ModalSinopse">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h5 class="text-center">Detalhes</h5> <!--Titulo do Modal -->
+                <h5 class="text-center">Sinopse</h5> <!--Titulo do Modal -->
             </div>
             <div class="modal-body">
-                <p>ISBN: <label id="ISBNModal"></label></p>
-                <br />
-                <p>Data de Publicação: <label id="DataPublicacaoModal"></label></p>
-                <br />
-                <p>Título: <label id="TituloModal"></label></p>
-                <br />
-                <p>Gênero: <label id="GeneroModal"></label></p>
-                <br />
-                <p>Editora: <label id="EditoraModal"></label></p>
-                <br />
-                <p>Autor: <label id="AutorModal"></label></p>
-                <br />
-                <p>Sinopse: <label id="SinopseModal"></label></p>
+                <article id="SinopseModal"></article>
                 <br />
             </div>
             <div class="modal-footer">
@@ -207,34 +194,21 @@
                 $(".BtnComprar").click(function () {
                     $("#ModalMensagem").modal('toggle');
                     $("#ModalMensagem").modal('show');
-                }
-                    )
+                })
+                    })
         </script>
     }
     <script>
         @*Recebe os Dados do Botão *@
         $(document).ready(function () {
-            $(".BtnDetalhes").click(function () {
-                $("#ModalDetalhes").modal('toggle');
-                $("#ModalDetalhes").modal('show');
-                var ImagemCaminho = $(this).attr("data-ImagemCaminho");
-                var ISBN = $(this).attr("data-ISBN");
-                var DataPublicacao = $(this).attr("data-DataPublicacao");
-                var Titulo = $(this).attr("data-Titulo");
-                var Genero = $(this).attr("data-Genero");
-                var Editora = $(this).attr("data-Editora");
-                var Autor = $(this).attr("data-Autor");
+            $(".BtnSinopse").click(function () {
+                $("#ModalSinopse").modal('toggle');
+                $("#ModalSinopse").modal('show');
+
                 var Sinopse = $(this).attr("data-Sinopse");
 
 
                 @* Envia os Dados para o Modal *@
-                $("#ImagemCapaModal").text(ImagemCaminho);
-                $("#ISBNModal").text(ISBN);
-                $("#DataPublicacaoModal").text(DataPublicacao);
-                $("#TituloModal").text(Titulo);
-                $("#GeneroModal").text(Genero);
-                $("#EditoraModal").text(Editora);
-                $("#AutorModal").text(Autor);
                 $("#SinopseModal").text(Sinopse);
 
             })

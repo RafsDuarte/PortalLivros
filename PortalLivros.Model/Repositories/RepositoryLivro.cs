@@ -31,48 +31,8 @@ namespace PortalLivros.Model.Repositories
             return (from p in odb.LIVRO where p.ID == ID select p).FirstOrDefault();
         }
 
-        //public AMIGO Selecionar(int ID)
-        //{
-        //    return (from p in odb.AMIGO where p.IDA == ID select p).FirstOrDefault();
-        //}
-
-        //public AMIGO Selecionar(int? ID)
-        //{
-        //    return (from p in odb.AMIGO where p.IDA == ID select p).FirstOrDefault();
-        //}
-
-        //public AMIGO VerificaLogin(string Email, string Senha)
-        //{
-        //    return (from p in odb.AMIGO where p.Email.Equals(Email) && p.Senha.Equals(Senha) select p).FirstOrDefault();
-        //}
-        //// ok
-        //public List<AMIGO> SelecionarTodos(string amigo)
-        //{
-        //    if (amigo.Trim() == "")
-        //    {
-        //        return (from p in odb.AMIGO orderby p.Nome select p).ToList();
-        //    }
-        //    else
-        //    {
-        //        return (from p in odb.AMIGO where p.Nome.Contains(amigo) select p).ToList();
-        //    }
-        //}
-
-        //public List<AMIGO> SelecionarTodosAmigos()
-        //{
-        //    return odb.AMIGO.OrderBy(p => p.Nome).ToList();
-        //}
-
-        //public List<AMIGO> ListarAmigos()
-        //{
-        //    return odb.AMIGO.OrderBy(p => p.Nome).ToList();
-        //}
-
         public void Incluir(LIVRO oLivro)
         {
-            /*odb.GENERO.Attach(oLivro.GENERO);
-            odb.AUTOR.Attach(oLivro.AUTOR);
-            odb.EDITORA.Attach(oLivro.EDITORA);*/
             odb.LIVRO.Add(oLivro);
             odb.SaveChanges();
         }

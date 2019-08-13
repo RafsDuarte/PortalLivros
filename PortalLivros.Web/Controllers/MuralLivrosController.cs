@@ -19,6 +19,9 @@ namespace PortalLivros.Web.Controllers
 
         public ActionResult Estante()
         {
+            ViewBag.GeneroLivros = new SelectList(_repositoryG.ListarGeneros(), "ID", "NomeGenero");
+            ViewBag.AutorLivros = new SelectList(_repositoryA.ListarAutores(), "ID", "NomeAutor");
+            ViewBag.EditoraLivros = new SelectList(_repositoryE.ListarEditoras(), "ID", "Editora");
             List<vw_LIVRO> Livros = _repository.ListarLivros();
             return View(Livros);
         }
@@ -26,6 +29,11 @@ namespace PortalLivros.Web.Controllers
         public ActionResult CriarLivro()
         {
             return View();
+        }
+
+        public ActionResult FiltrarLivros()
+        {
+            return null;
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

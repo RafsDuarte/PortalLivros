@@ -78,6 +78,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelClasses.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Partial\Autor.cs" />
+    <Compile Include="Partial\Editora.cs" />
+    <Compile Include="Partial\Genero.cs" />
     <Compile Include="Partial\Livro.cs" />
     <Compile Include="Partial\Usuario.cs" />
     <Compile Include="Partial\vw_Livro.cs" />
