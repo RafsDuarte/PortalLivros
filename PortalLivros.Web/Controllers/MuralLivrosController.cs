@@ -17,12 +17,33 @@ namespace PortalLivros.Web.Controllers
         private RepositoryAutor _repositoryA = new RepositoryAutor();
         private RepositoryEditora _repositoryE = new RepositoryEditora();
 
-        public ActionResult Estante()
+        public ActionResult Estante(int GeneroLivros = 0, int AutorLivros = 0, int EditoraLivros = 0)
         {
             ViewBag.GeneroLivros = new SelectList(_repositoryG.ListarGeneros(), "ID", "NomeGenero");
             ViewBag.AutorLivros = new SelectList(_repositoryA.ListarAutores(), "ID", "NomeAutor");
             ViewBag.EditoraLivros = new SelectList(_repositoryE.ListarEditoras(), "ID", "Editora");
             List<vw_LIVRO> Livros = _repository.ListarLivros();
+
+            if(GeneroLivros != 0)
+            {
+                Livros = Livros.Where(p => p.IDGenero.Equals(GeneroLivros)).ToList();
+                return View(Livros);
+            }
+
+
+            if (AutorLivros != 0)
+            {
+                Livros = Livros.Where(p => p.IDAutor.Equals(AutorLivros)).ToList();
+                return View(Livros);
+            }
+
+
+            if (EditoraLivros != 0)
+            {
+                Livros = Livros.Where(p => p.IDEditora.Equals(EditoraLivros)).ToList();
+                return View(Livros);
+            }
+
             return View(Livros);
         }
 

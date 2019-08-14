@@ -13,7 +13,7 @@
 
 @Html.Label("Filtrar por: ", htmlAttributes: new { @class = "control-label" })
 
-@using (Html.BeginForm("FiltrarLivros", "MuralLivros", FormMethod.Get, new { role = "form", @class = "form-filter" }))
+@using (Html.BeginForm("Estante", "MuralLivros", FormMethod.Get))
 {
 <div class="form-inline">
     <div class="form-group" style="margin-right: 10px">
@@ -65,7 +65,7 @@
         </tr>
 
         @foreach (var item in Model)
-        {
+{
             <tr>
                 @if (!String.IsNullOrEmpty(item.ImagemCaminho))
                 {
@@ -103,7 +103,7 @@
                 </td>
 
                 @if (Session["Perfil"] != null)
-                {
+{
                     <td class="text-center">
                         <button class="btn btn-success center-block  BtnComprar" data-toggle="modal"
                                 data-target="#ModalMensagem">
@@ -194,7 +194,7 @@
                 $(".BtnComprar").click(function () {
                     $("#ModalMensagem").modal('toggle');
                     $("#ModalMensagem").modal('show');
-                })
+            })
                     })
         </script>
     }
