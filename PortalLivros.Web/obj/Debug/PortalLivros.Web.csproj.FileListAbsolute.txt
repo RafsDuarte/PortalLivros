@@ -239,6 +239,7 @@ C:\GitHub\PortalLivros\PortalLivros.Web\bin\WebGrease.dll
 C:\GitHub\PortalLivros\PortalLivros.Web\bin\PortalLivros.Control.pdb
 C:\GitHub\PortalLivros\PortalLivros.Web\bin\PortalLivros.Model.pdb
 C:\GitHub\PortalLivros\PortalLivros.Web\bin\PortalLivros.Model.dll.config
+C:\GitHub\PortalLivros\PortalLivros.Web\bin\Antlr3.Runtime.pdb
 C:\GitHub\PortalLivros\PortalLivros.Web\bin\EntityFramework.xml
 C:\GitHub\PortalLivros\PortalLivros.Web\bin\EntityFramework.SqlServer.xml
 C:\GitHub\PortalLivros\PortalLivros.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
@@ -250,7 +251,6 @@ C:\GitHub\PortalLivros\PortalLivros.Web\bin\System.Web.Razor.xml
 C:\GitHub\PortalLivros\PortalLivros.Web\bin\System.Web.WebPages.xml
 C:\GitHub\PortalLivros\PortalLivros.Web\bin\System.Web.WebPages.Deployment.xml
 C:\GitHub\PortalLivros\PortalLivros.Web\bin\System.Web.WebPages.Razor.xml
-C:\GitHub\PortalLivros\PortalLivros.Web\bin\Antlr3.Runtime.pdb
 C:\GitHub\PortalLivros\PortalLivros.Web\obj\Debug\PortalLivros.Web.csprojAssemblyReference.cache
 C:\GitHub\PortalLivros\PortalLivros.Web\obj\Debug\PortalLivros.Web.csproj.CoreCompileInputs.cache
 C:\GitHub\PortalLivros\PortalLivros.Web\obj\Debug\PortalLivros.Web.csproj.CopyComplete

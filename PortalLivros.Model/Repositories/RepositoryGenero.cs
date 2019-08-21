@@ -21,6 +21,7 @@ namespace PortalLivros.Model.Repositories
             _obd = odb;
         }
 
+
         public void Incluir(GENERO oGenero)
         {
             odb.GENERO.Add(oGenero);
