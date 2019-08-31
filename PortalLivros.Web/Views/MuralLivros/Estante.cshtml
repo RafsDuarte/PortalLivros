@@ -199,17 +199,17 @@
         </script>
     }
     <script>
-        @*Recebe os Dados do Botão *@
+        @*Recebe os Dados do Botão*@ 
         $(document).ready(function () {
             $(".BtnSinopse").click(function () {
-                $("#ModalSinopse").modal('toggle');
-                $("#ModalSinopse").modal('show');
+        //        $("#ModalSinopse").modal('toggle');
+        //        $("#ModalSinopse").modal('show');
 
                 var Sinopse = $(this).attr("data-Sinopse");
 
 
-                @* Envia os Dados para o Modal *@
-                $("#SinopseModal").text(Sinopse);
+                 @*Envia os Dados para o Modal*@ 
+                    $("#SinopseModal").text(Sinopse);
 
             })
         })
