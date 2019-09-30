@@ -15,9 +15,8 @@ namespace PortalLivros.Model
     public partial class USUARIO
     {
         public int ID { get; set; }
-        public string Nome { get; set; }
+        public string Usuario { get; set; }
         public string Senha { get; set; }
-        public bool Adm { get; set; }
-        public bool SuperAdm { get; set; }
+        public string Role { get; set; }
     }
 }

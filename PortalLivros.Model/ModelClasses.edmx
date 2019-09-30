@@ -45,10 +45,9 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Senha" Type="varchar" MaxLength="8" Nullable="false" />
-          <Property Name="Adm" Type="bit" Nullable="false" />
-          <Property Name="SuperAdm" Type="bit" Nullable="false" />
+          <Property Name="Role" Type="varchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'PortalLivros.dbo.vw_LIVRO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -154,49 +153,29 @@ warning 6002: The table/view 'PortalLivros.dbo.vw_LIVRO' does not have a primary
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PortalLivrosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="PortalLivrosEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AUTOR" EntityType="PortalLivrosModel.AUTOR" />
-          <EntitySet Name="EDITORA" EntityType="PortalLivrosModel.EDITORA" />
-          <EntitySet Name="GENERO" EntityType="PortalLivrosModel.GENERO" />
-          <EntitySet Name="LIVRO" EntityType="PortalLivrosModel.LIVRO" />
-          <EntitySet Name="USUARIO" EntityType="PortalLivrosModel.USUARIO" />
-          <AssociationSet Name="FK_LIVRO_AUTOR" Association="PortalLivrosModel.FK_LIVRO_AUTOR">
-            <End Role="AUTOR" EntitySet="AUTOR" />
-            <End Role="LIVRO" EntitySet="LIVRO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LIVRO_EDITORA" Association="PortalLivrosModel.FK_LIVRO_EDITORA">
-            <End Role="EDITORA" EntitySet="EDITORA" />
-            <End Role="LIVRO" EntitySet="LIVRO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LIVRO_GENERO" Association="PortalLivrosModel.FK_LIVRO_GENERO">
-            <End Role="GENERO" EntitySet="GENERO" />
-            <End Role="LIVRO" EntitySet="LIVRO" />
-          </AssociationSet>
-          <EntitySet Name="vw_LIVRO" EntityType="PortalLivrosModel.vw_LIVRO" />
-        </EntityContainer>
         <EntityType Name="AUTOR">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NomeAutor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="LIVRO" Relationship="PortalLivrosModel.FK_LIVRO_AUTOR" FromRole="AUTOR" ToRole="LIVRO" />
+          <Property Name="NomeAutor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="LIVRO" Relationship="Self.FK_LIVRO_AUTOR" FromRole="AUTOR" ToRole="LIVRO" />
         </EntityType>
         <EntityType Name="EDITORA">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Editora" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="LIVRO" Relationship="PortalLivrosModel.FK_LIVRO_EDITORA" FromRole="EDITORA" ToRole="LIVRO" />
+          <Property Name="Editora" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="LIVRO" Relationship="Self.FK_LIVRO_EDITORA" FromRole="EDITORA" ToRole="LIVRO" />
         </EntityType>
         <EntityType Name="GENERO">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NomeGenero" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="LIVRO" Relationship="PortalLivrosModel.FK_LIVRO_GENERO" FromRole="GENERO" ToRole="LIVRO" />
+          <Property Name="NomeGenero" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="LIVRO" Relationship="Self.FK_LIVRO_GENERO" FromRole="GENERO" ToRole="LIVRO" />
         </EntityType>
         <EntityType Name="LIVRO">
           <Key>
@@ -206,28 +185,18 @@ warning 6002: The table/view 'PortalLivros.dbo.vw_LIVRO' does not have a primary
           <Property Name="IDEditora" Type="Int32" Nullable="false" />
           <Property Name="IDGenero" Type="Int32" Nullable="false" />
           <Property Name="IDAutor" Type="Int32" Nullable="false" />
-          <Property Name="ISBN" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="ISBN" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DataPublicacao" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Sinopse" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sinopse" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ImagemCaminho" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AUTOR" Relationship="PortalLivrosModel.FK_LIVRO_AUTOR" FromRole="LIVRO" ToRole="AUTOR" />
-          <NavigationProperty Name="EDITORA" Relationship="PortalLivrosModel.FK_LIVRO_EDITORA" FromRole="LIVRO" ToRole="EDITORA" />
-          <NavigationProperty Name="GENERO" Relationship="PortalLivrosModel.FK_LIVRO_GENERO" FromRole="LIVRO" ToRole="GENERO" />
-        </EntityType>
-        <EntityType Name="USUARIO">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Senha" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="Adm" Type="Boolean" Nullable="false" />
-          <Property Name="SuperAdm" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AUTOR" Relationship="Self.FK_LIVRO_AUTOR" FromRole="LIVRO" ToRole="AUTOR" />
+          <NavigationProperty Name="EDITORA" Relationship="Self.FK_LIVRO_EDITORA" FromRole="LIVRO" ToRole="EDITORA" />
+          <NavigationProperty Name="GENERO" Relationship="Self.FK_LIVRO_GENERO" FromRole="LIVRO" ToRole="GENERO" />
         </EntityType>
         <Association Name="FK_LIVRO_AUTOR">
-          <End Type="PortalLivrosModel.AUTOR" Role="AUTOR" Multiplicity="1" />
-          <End Type="PortalLivrosModel.LIVRO" Role="LIVRO" Multiplicity="*" />
+          <End Role="AUTOR" Type="Self.AUTOR" Multiplicity="1" />
+          <End Role="LIVRO" Type="Self.LIVRO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AUTOR">
               <PropertyRef Name="ID" />
@@ -238,8 +207,8 @@ warning 6002: The table/view 'PortalLivros.dbo.vw_LIVRO' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LIVRO_EDITORA">
-          <End Type="PortalLivrosModel.EDITORA" Role="EDITORA" Multiplicity="1" />
-          <End Type="PortalLivrosModel.LIVRO" Role="LIVRO" Multiplicity="*" />
+          <End Role="EDITORA" Type="Self.EDITORA" Multiplicity="1" />
+          <End Role="LIVRO" Type="Self.LIVRO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EDITORA">
               <PropertyRef Name="ID" />
@@ -250,8 +219,8 @@ warning 6002: The table/view 'PortalLivros.dbo.vw_LIVRO' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LIVRO_GENERO">
-          <End Type="PortalLivrosModel.GENERO" Role="GENERO" Multiplicity="1" />
-          <End Type="PortalLivrosModel.LIVRO" Role="LIVRO" Multiplicity="*" />
+          <End Role="GENERO" Type="Self.GENERO" Multiplicity="1" />
+          <End Role="LIVRO" Type="Self.LIVRO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GENERO">
               <PropertyRef Name="ID" />
@@ -261,6 +230,35 @@ warning 6002: The table/view 'PortalLivros.dbo.vw_LIVRO' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="PortalLivrosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AUTOR" EntityType="Self.AUTOR" />
+          <EntitySet Name="EDITORA" EntityType="Self.EDITORA" />
+          <EntitySet Name="GENERO" EntityType="Self.GENERO" />
+          <EntitySet Name="LIVRO" EntityType="Self.LIVRO" />
+          <AssociationSet Name="FK_LIVRO_AUTOR" Association="Self.FK_LIVRO_AUTOR">
+            <End Role="AUTOR" EntitySet="AUTOR" />
+            <End Role="LIVRO" EntitySet="LIVRO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIVRO_EDITORA" Association="Self.FK_LIVRO_EDITORA">
+            <End Role="EDITORA" EntitySet="EDITORA" />
+            <End Role="LIVRO" EntitySet="LIVRO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIVRO_GENERO" Association="Self.FK_LIVRO_GENERO">
+            <End Role="GENERO" EntitySet="GENERO" />
+            <End Role="LIVRO" EntitySet="LIVRO" />
+          </AssociationSet>
+          <EntitySet Name="USUARIO" EntityType="PortalLivrosModel.USUARIO" />
+          <EntitySet Name="vw_LIVRO" EntityType="PortalLivrosModel.vw_LIVRO" />
+        </EntityContainer>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Senha" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="vw_LIVRO">
           <Key>
             <PropertyRef Name="ID" />
@@ -297,49 +295,48 @@ warning 6002: The table/view 'PortalLivros.dbo.vw_LIVRO' does not have a primary
           <EntitySetMapping Name="AUTOR">
             <EntityTypeMapping TypeName="PortalLivrosModel.AUTOR">
               <MappingFragment StoreEntitySet="AUTOR">
-                <ScalarProperty Name="NomeAutor" ColumnName="NomeAutor" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NomeAutor" ColumnName="NomeAutor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EDITORA">
             <EntityTypeMapping TypeName="PortalLivrosModel.EDITORA">
               <MappingFragment StoreEntitySet="EDITORA">
-                <ScalarProperty Name="Editora" ColumnName="Editora" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Editora" ColumnName="Editora" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GENERO">
             <EntityTypeMapping TypeName="PortalLivrosModel.GENERO">
               <MappingFragment StoreEntitySet="GENERO">
-                <ScalarProperty Name="NomeGenero" ColumnName="NomeGenero" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NomeGenero" ColumnName="NomeGenero" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LIVRO">
             <EntityTypeMapping TypeName="PortalLivrosModel.LIVRO">
               <MappingFragment StoreEntitySet="LIVRO">
-                <ScalarProperty Name="ImagemCaminho" ColumnName="ImagemCaminho" />
-                <ScalarProperty Name="Sinopse" ColumnName="Sinopse" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="DataPublicacao" ColumnName="DataPublicacao" />
-                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
-                <ScalarProperty Name="IDAutor" ColumnName="IDAutor" />
-                <ScalarProperty Name="IDGenero" ColumnName="IDGenero" />
-                <ScalarProperty Name="IDEditora" ColumnName="IDEditora" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDEditora" ColumnName="IDEditora" />
+                <ScalarProperty Name="IDGenero" ColumnName="IDGenero" />
+                <ScalarProperty Name="IDAutor" ColumnName="IDAutor" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="DataPublicacao" ColumnName="DataPublicacao" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Sinopse" ColumnName="Sinopse" />
+                <ScalarProperty Name="ImagemCaminho" ColumnName="ImagemCaminho" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="USUARIO">
             <EntityTypeMapping TypeName="PortalLivrosModel.USUARIO">
               <MappingFragment StoreEntitySet="USUARIO">
-                <ScalarProperty Name="SuperAdm" ColumnName="SuperAdm" />
-                <ScalarProperty Name="Adm" ColumnName="Adm" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="Senha" ColumnName="Senha" />
-                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

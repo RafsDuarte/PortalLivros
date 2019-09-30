@@ -26,10 +26,10 @@ namespace PortalLivros.Model.Repositories
             return (from p in odb.USUARIO where p.ID == ID select p).FirstOrDefault();
         }
 
-        //public USUARIO VerificaLogin(string Email, string Senha)
-        //{
-        //    return (from p in odb.USUARIO where p.Email.Equals(Email) && p.Senha.Equals(Senha) select p).FirstOrDefault();
-        //}
+        public USUARIO VerificaLogin(string Usuario, string Senha)
+        {
+            return (from p in odb.USUARIO where p.Usuario.Equals(Usuario) && p.Senha.Equals(Senha) select p).FirstOrDefault();
+        }
 
         public void Incluir(USUARIO oUsuario)
         {

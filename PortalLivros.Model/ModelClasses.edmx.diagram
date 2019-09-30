@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8a0969ee1bbe42a2a1fcc4cd7244fac0" Name="Diagram1">
-        <EntityTypeShape EntityType="PortalLivrosModel.AUTOR" Width="1.5" PointX="0.75" PointY="1.875" />
-        <EntityTypeShape EntityType="PortalLivrosModel.EDITORA" Width="1.5" PointX="0.75" PointY="7.375" />
-        <EntityTypeShape EntityType="PortalLivrosModel.GENERO" Width="1.5" PointX="0.75" PointY="5" />
-        <EntityTypeShape EntityType="PortalLivrosModel.LIVRO" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="PortalLivrosModel.USUARIO" Width="1.5" PointX="5.75" PointY="0.75" />
-        <AssociationConnector Association="PortalLivrosModel.FK_LIVRO_AUTOR" />
-        <AssociationConnector Association="PortalLivrosModel.FK_LIVRO_EDITORA" />
-        <AssociationConnector Association="PortalLivrosModel.FK_LIVRO_GENERO" />
+      <Diagram DiagramId="5290f405cfc246fba39331d49020d18a" Name="Diagram1">
+        <EntityTypeShape EntityType="PortalLivrosModel.AUTOR" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PortalLivrosModel.EDITORA" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PortalLivrosModel.GENERO" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PortalLivrosModel.LIVRO" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="PortalLivrosModel.FK_LIVRO_AUTOR" ManuallyRouted="false" />
+        <AssociationConnector Association="PortalLivrosModel.FK_LIVRO_EDITORA" ManuallyRouted="false" />
+        <AssociationConnector Association="PortalLivrosModel.FK_LIVRO_GENERO" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PortalLivrosModel.USUARIO" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="PortalLivrosModel.vw_LIVRO" Width="1.5" PointX="5.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>

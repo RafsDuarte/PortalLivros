@@ -4,49 +4,48 @@
     <EntitySetMapping Name="AUTOR">
       <EntityTypeMapping TypeName="PortalLivrosModel.AUTOR">
         <MappingFragment StoreEntitySet="AUTOR">
-          <ScalarProperty Name="NomeAutor" ColumnName="NomeAutor" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NomeAutor" ColumnName="NomeAutor" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="EDITORA">
       <EntityTypeMapping TypeName="PortalLivrosModel.EDITORA">
         <MappingFragment StoreEntitySet="EDITORA">
-          <ScalarProperty Name="Editora" ColumnName="Editora" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Editora" ColumnName="Editora" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="GENERO">
       <EntityTypeMapping TypeName="PortalLivrosModel.GENERO">
         <MappingFragment StoreEntitySet="GENERO">
-          <ScalarProperty Name="NomeGenero" ColumnName="NomeGenero" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NomeGenero" ColumnName="NomeGenero" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LIVRO">
       <EntityTypeMapping TypeName="PortalLivrosModel.LIVRO">
         <MappingFragment StoreEntitySet="LIVRO">
-          <ScalarProperty Name="ImagemCaminho" ColumnName="ImagemCaminho" />
-          <ScalarProperty Name="Sinopse" ColumnName="Sinopse" />
-          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-          <ScalarProperty Name="DataPublicacao" ColumnName="DataPublicacao" />
-          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
-          <ScalarProperty Name="IDAutor" ColumnName="IDAutor" />
-          <ScalarProperty Name="IDGenero" ColumnName="IDGenero" />
-          <ScalarProperty Name="IDEditora" ColumnName="IDEditora" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDEditora" ColumnName="IDEditora" />
+          <ScalarProperty Name="IDGenero" ColumnName="IDGenero" />
+          <ScalarProperty Name="IDAutor" ColumnName="IDAutor" />
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="DataPublicacao" ColumnName="DataPublicacao" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Sinopse" ColumnName="Sinopse" />
+          <ScalarProperty Name="ImagemCaminho" ColumnName="ImagemCaminho" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="USUARIO">
       <EntityTypeMapping TypeName="PortalLivrosModel.USUARIO">
         <MappingFragment StoreEntitySet="USUARIO">
-          <ScalarProperty Name="SuperAdm" ColumnName="SuperAdm" />
-          <ScalarProperty Name="Adm" ColumnName="Adm" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
           <ScalarProperty Name="Senha" ColumnName="Senha" />
-          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

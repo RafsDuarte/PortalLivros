@@ -16,14 +16,14 @@ namespace PortalLivros.Model
             [DisplayName("ID")]
             public int ID { get; set; }
 
-            [DisplayName("Nome")]
-            public string Nome { get; set; }
+            [DisplayName("Usuário")]
+            public string Usuario { get; set; }
 
             [DisplayName("Senha")]
             public string Senha { get; set; }
 
-            [DisplayName("Email")]
-            public string Email { get; set; }
+            [DisplayName("Role")]
+            public string Role { get; set; }
         }
     }
 }
